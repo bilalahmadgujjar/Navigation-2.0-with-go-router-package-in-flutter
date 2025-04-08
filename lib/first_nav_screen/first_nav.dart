@@ -10,8 +10,8 @@ class FirstNav extends StatefulWidget {
 }
 
 class _FirstNavState extends State<FirstNav> {
-
   int selectedIndex = 0;
+
   void onItemTapped(int index) {
     switch (index) {
       case 0:
@@ -26,7 +26,6 @@ class _FirstNavState extends State<FirstNav> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     // Determine selected tab from the current location
@@ -38,37 +37,47 @@ class _FirstNavState extends State<FirstNav> {
       selectedIndex = 2;
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: widget.child, // Use the ShellRoute's current child
-      bottomNavigationBar: NavigationBar(
+    return WillPopScope(
+      onWillPop: () async {
+        // If we are not on the home tab, navigate back to home instead of exiting
+        if (selectedIndex != 0) {
+          print('this is not back');
+          onItemTapped(0); // Go to the home tab
+          return Future.value(false); // Prevent the app from exiting
+        }
+        print('this is the back');
+        return Future.value(true); // Allow the app to exit if on home tab
+      },
+      child: Scaffold(
         backgroundColor: Colors.white,
-        surfaceTintColor: Colors.black45,
-        elevation: 1,
-        selectedIndex: selectedIndex,
-        onDestinationSelected: onItemTapped,
-        indicatorColor: Colors.amber,
-        labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        destinations: const [
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            selectedIcon: Badge(child: Icon(Icons.person)),
-            icon: Badge(child: Icon(Icons.person_outline)),
-            label: 'Profile',
-          ),
-          NavigationDestination(
-            selectedIcon: Badge(child: Icon(Icons.settings)),
-            icon:
-                Badge(label: Text('2'), child: Icon(Icons.settings_suggest)),
-            label: 'Settings',
-          ),
-        ],
+        body: widget.child, // Use the ShellRoute's current child
+        bottomNavigationBar: NavigationBar(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.black45,
+          elevation: 1,
+          selectedIndex: selectedIndex,
+          onDestinationSelected: onItemTapped,
+          indicatorColor: Colors.amber,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+          destinations: const [
+            NavigationDestination(
+              selectedIcon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              selectedIcon: Badge(child: Icon(Icons.person)),
+              icon: Badge(child: Icon(Icons.person_outline)),
+              label: 'Profile',
+            ),
+            NavigationDestination(
+              selectedIcon: Badge(child: Icon(Icons.settings)),
+              icon: Badge(label: Text('2'), child: Icon(Icons.settings_suggest)),
+              label: 'Settings',
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
