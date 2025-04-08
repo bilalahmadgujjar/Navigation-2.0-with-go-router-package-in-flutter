@@ -64,6 +64,20 @@ class _Home1State extends State<Home1> {
               )),
 
 
+              const SizedBox(height: 20,),
+
+
+              const Text('New Screen'),
+              const SizedBox(height: 10,),
+              ElevatedButton(onPressed: (){
+                context.push('/new1'); // its root set wrong for test page not found screen
+              }, child: const Text(
+                'Next Screen',
+              )),
+
+
+
+
 
               ///=========================================
               const SizedBox(height: 20,),
