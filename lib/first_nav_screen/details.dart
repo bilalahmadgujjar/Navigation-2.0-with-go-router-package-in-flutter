@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Home2 extends StatefulWidget {
-  const Home2({super.key});
+class Details extends StatefulWidget {
+  const Details({super.key});
 
   @override
-  State<Home2> createState() => _Home2State();
+  State<Details> createState() => _DetailsState();
 }
 
-class _Home2State extends State<Home2> {
+class _DetailsState extends State<Details> {
 
   @override
   void initState() {

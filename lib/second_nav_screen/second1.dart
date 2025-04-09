@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../routes/app_routes.dart';
 class Second1 extends StatelessWidget {
   const Second1({super.key});
 
@@ -21,9 +23,9 @@ class Second1 extends StatelessWidget {
                   final currentLocation = GoRouterState.of(context).uri.toString();
 
                   if (currentLocation.startsWith('/donor')) {
-                    context.go('/user/home'); // Switch to Donor Navigation
+                    context.go(AppRoutes.home1); // Switch to user Navigation
                   } else {
-                    context.go('/donor/home'); // Switch to User Navigation
+                    context.go(AppRoutes.donorHome); // Switch to Donor Navigation
                   }
                 },
                 child: const Text(

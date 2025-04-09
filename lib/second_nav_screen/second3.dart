@@ -14,7 +14,6 @@ class Second3 extends StatelessWidget {
             children: [
               const Text('Second 3'),
               const SizedBox(height: 10,),
-
               ElevatedButton(onPressed: (){
 
               }, child: const Text(

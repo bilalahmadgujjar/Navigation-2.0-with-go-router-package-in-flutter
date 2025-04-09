@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navigation/first_nav_screen/home1.dart';
-import 'package:navigation/first_nav_screen/home2.dart';
+import 'package:navigation/first_nav_screen/details.dart';
 import 'package:navigation/first_nav_screen/profile.dart';
-import 'package:navigation/first_nav_screen/home4.dart';
+import 'package:navigation/first_nav_screen/edit.dart';
+import 'package:navigation/routes/app_routes.dart';
 import 'package:navigation/second_nav_screen/second1.dart';
 import 'package:navigation/second_nav_screen/second2.dart';
 import 'package:navigation/second_nav_screen/second3.dart';
@@ -12,10 +13,10 @@ import 'package:navigation/first_nav_screen/settings.dart';
 import 'package:navigation/first_nav_screen/first_nav.dart';
 import 'package:navigation/public_screen/new_screen.dart';
 import 'package:navigation/public_screen/parameter_screen.dart';
-import 'public_screen/not_page_found.dart';
+import '../public_screen/not_page_found.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/user/home',
+  initialLocation: AppRoutes.home1,
   routes: [
     /// SHELL Route in which update initState every time when tab
     ///===================================================================
@@ -30,15 +31,15 @@ final GoRouter appRouter = GoRouter(
       routes: [
         /// 🏠 Home Tab
         GoRoute(
-          path: '/user/home',
+          path: AppRoutes.home1,
           pageBuilder: (context, state) =>
               const NoTransitionPage(child: Home1()),
           routes: [
             GoRoute(
-              path: 'details',
+              path: AppRoutes.details,
               pageBuilder: (context, state) => CustomTransitionPage(
                 key: state.pageKey,
-                child: const Home2(),
+                child: const Details(),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {
                   return SlideTransition(
@@ -56,14 +57,14 @@ final GoRouter appRouter = GoRouter(
 
         /// 👤 Profile Tab
         GoRoute(
-          path: '/user/profile',
+          path:AppRoutes.profile,
           pageBuilder: (context, state) =>
               const NoTransitionPage(child: Profile()),
           routes: [
             GoRoute(
-              path: 'edit',
+              path:AppRoutes.edit,
               pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: Home4()),
+                  const NoTransitionPage(child: Edit()),
             ),
           ],
         ),
@@ -80,12 +81,12 @@ final GoRouter appRouter = GoRouter(
         //   ],
         // ),
         GoRoute(
-          path: '/user/settings',
+          path: AppRoutes.settings,
           pageBuilder: (context, state) =>
               const NoTransitionPage(child: Settings()),
           routes: [
             GoRoute(
-              path: 'privacy',
+              path: AppRoutes.privacy,
               pageBuilder: (context, state) =>
                   const NoTransitionPage(child: Home1()),
             ),
@@ -108,12 +109,12 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/donor/home',
+              path: AppRoutes.donorHome,
               builder: (context, state) => const Second1(),
               routes: [
                 GoRoute(
-                    path: 'details',
-                    builder: (context, state) => const Home2()),
+                    path:AppRoutes.donorDetails,
+                    builder: (context, state) => const Details()),
               ],
             ),
           ],
@@ -123,11 +124,11 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/donor/profile',
+              path: AppRoutes.donorProfile,
               builder: (context, state) => const Second2(),
               routes: [
                 GoRoute(
-                    path: 'edit', builder: (context, state) => const Home4()),
+                    path:AppRoutes.donorEdit, builder: (context, state) => const Edit()),
               ],
             ),
           ],
@@ -137,11 +138,11 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/donor/settings',
+              path:AppRoutes.donorSetting,
               builder: (context, state) => const Second3(),
               routes: [
                 GoRoute(
-                    path: 'privacy',
+                    path:AppRoutes.privacy,
                     builder: (context, state) => const Home1()),
               ],
             ),
@@ -155,14 +156,15 @@ final GoRouter appRouter = GoRouter(
     /// ===================================================================
 
     GoRoute(
-      path: '/new',
+      path: AppRoutes.newScreen,
       pageBuilder: (context, state) => const NoTransitionPage(
         child: NewScreen(), // Replace with your actual widget
       ),
     ),
 
     GoRoute(
-      path: '/param/:value/:active',
+      // path: '/param/:value/:active',
+      path: AppRoutes.parameterScreenPath,
       pageBuilder: (context, state) {
         final paramValue = state.pathParameters['value'] ?? 'Default Value 1';
         final isActive = state.pathParameters['active'] == 'true';

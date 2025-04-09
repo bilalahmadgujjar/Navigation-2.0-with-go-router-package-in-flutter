@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:navigation/routes/app_routes.dart';
 
 class FirstNav extends StatefulWidget {
   final Widget child;
@@ -15,13 +16,13 @@ class _FirstNavState extends State<FirstNav> {
   void onItemTapped(int index) {
     switch (index) {
       case 0:
-        context.go('/user/home');
+        context.go(AppRoutes.home1);
         break;
       case 1:
-        context.go('/user/profile');
+        context.go(AppRoutes.profile);
         break;
       case 2:
-        context.go('/user/settings');
+        context.go(AppRoutes.settings);
         break;
     }
   }
@@ -31,9 +32,9 @@ class _FirstNavState extends State<FirstNav> {
     // Determine selected tab from the current location
     final String location = GoRouterState.of(context).uri.toString();
     selectedIndex = 0;
-    if (location.startsWith('/user/profile')) {
+    if (location.startsWith(AppRoutes.profile)) {
       selectedIndex = 1;
-    } else if (location.startsWith('/user/settings')) {
+    } else if (location.startsWith(AppRoutes.settings)) {
       selectedIndex = 2;
     }
 

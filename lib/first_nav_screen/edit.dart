@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Home4 extends StatelessWidget {
-  const Home4({super.key});
+class Edit extends StatelessWidget {
+  const Edit({super.key});
 
   @override
   Widget build(BuildContext context) {
