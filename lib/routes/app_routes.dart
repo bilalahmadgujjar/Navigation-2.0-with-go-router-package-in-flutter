@@ -25,9 +25,11 @@ class AppRoutes {
   static const String donorDetails =  'details';
   static String get donorDetailPath => '$donorHome/$donorDetails';
 
+
   static const String donorProfile =  '/donor/profile';
   static const String donorEdit = 'edit';
   static String get donorProfileEditPath => '$donorProfile/$donorEdit';
+
 
   static const String donorSetting = '/donor/settings';
   static const String donorPrivacy =  'privacy';
@@ -41,8 +43,7 @@ class AppRoutes {
   // 👇 Global parameterized route path
   static const String parameterScreenPath = '/param/:value/:active';
   // 👇 Helper to generate full route dynamically
-  static String parameterScreen(String value, bool isActive) =>
-      '/param/$value/${isActive.toString()}';
+  static String parameterScreen(String value, bool isActive) => '/param/$value/${isActive.toString()}';
 
 
 

@@ -52,7 +52,9 @@ class _FirstNavState extends State<FirstNav> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: widget.child, // Use the ShellRoute's current child
+
         bottomNavigationBar: NavigationBar(
+          height: 60,
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.black45,
           elevation: 1,
@@ -60,11 +62,14 @@ class _FirstNavState extends State<FirstNav> {
           onDestinationSelected: onItemTapped,
           indicatorColor: Colors.amber,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+
           destinations: const [
             NavigationDestination(
               selectedIcon: Icon(Icons.home),
+
               icon: Icon(Icons.home_outlined),
               label: 'Home',
+
             ),
             NavigationDestination(
               selectedIcon: Badge(child: Icon(Icons.person)),
@@ -77,7 +82,9 @@ class _FirstNavState extends State<FirstNav> {
               label: 'Settings',
             ),
           ],
+
         ),
+
       ),
     );
   }
